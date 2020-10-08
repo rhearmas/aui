@@ -58,6 +58,9 @@ select_editor() {
   select EDITOR in "${editors_list[@]}"; do
     if contains_element "$EDITOR" "${editors_list[@]}"; then
       package_install "$EDITOR"
+      if "$EDITOR" == "neovim"; then
+        EDITOR = "nvim"
+      fi
       break
     else
       invalid_option
